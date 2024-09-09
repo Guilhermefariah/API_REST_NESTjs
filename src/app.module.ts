@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
+import { BooksController } from './Controllers/books/books.controller';
 
 
 @Module({
   imports: [],
-  controllers: [],
+  controllers: [BooksController],
   providers: [],
 })
 export class AppModule {}
