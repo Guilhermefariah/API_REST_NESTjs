@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Delete } from '@nestjs/common'
+import { Controller, Get, Post, Patch, Delete, Body } from '@nestjs/common'
 
 @Controller('books')
 export class BooksController {
@@ -8,8 +8,8 @@ export class BooksController {
   }
   
   @Post()
-  saveBooks(): string {
-    return 'Este livro foi salvo!'
+  saveBooks(@Body() newBook: string): string {
+    return newBook
   }
 
   @Patch()
