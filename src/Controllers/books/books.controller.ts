@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Patch, Delete, Body } from '@nestjs/common'
+import { BookDTO } from '../../DTO/books.dto'
 
 @Controller('books')
 export class BooksController {
@@ -8,7 +9,7 @@ export class BooksController {
   }
   
   @Post()
-  saveBooks(@Body() newBook: string): string {
+  saveBooks(@Body() newBook: BookDTO): BookDTO {
     return newBook
   }
 
