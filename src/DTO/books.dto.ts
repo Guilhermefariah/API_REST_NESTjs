@@ -1,9 +1,13 @@
-import { IsNotEmpty,
+import { ArrayMaxSize,
+         IsNotEmpty,
          IsNumber,
          IsPositive,
          IsString,
          MaxLength,
-         MinLength } from "class-validator"
+         MinLength, 
+         ValidateNested} from "class-validator"
+import { Type } from "class-transformer"
+import { AuthorDTO } from './author.dto'
 
 export class BookDTO {
 
@@ -14,8 +18,10 @@ export class BookDTO {
     readonly name: string
 
     @IsNotEmpty()
-    @IsString()
-    readonly author: string[]
+    @Type(() => AuthorDTO)
+    @ArrayMaxSize(1)
+    @ValidateNested({ each : true })
+    readonly author: AuthorDTO[]
 
     @IsNotEmpty()
     @IsString()
