@@ -19,7 +19,7 @@ export class BookDTO {
 
     @IsNotEmpty()
     @Type(() => AuthorDTO)
-    @ArrayMaxSize(1)
+    @ArrayMaxSize(2)
     @ValidateNested({ each : true })
     readonly author: AuthorDTO[]
 
