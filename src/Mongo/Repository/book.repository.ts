@@ -11,9 +11,15 @@ export class BookRepository {
         @InjectModel('book') private readonly bookModel : Model<Book>
     ){}
 
-    saveBook(newBook: BookDTO){
+    async saveBook(newBook: BookDTO): Promise<BookDTO> {
         const saveBook = new this.bookModel(newBook);
-        return saveBook.save()
+        await saveBook.save()
+        return
+    }
+
+    async getAllBooks(): Promise<BookDTO[]> {
+        await this.bookModel.find({}, { __v: false }).sort({ name: 1 }).exec()
+        return
     }
 
 }

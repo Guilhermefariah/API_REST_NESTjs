@@ -10,13 +10,15 @@ export class BooksController {
   ){}
 
   @Get()
-  getAllBooks(): string {
-    return 'Todos os livros estão aqui!'
+  async getAllBooks(): Promise<BookDTO[]> {
+     await this.BooksService.getAllBooks()
+     return
+   
   }
   
   @Post()
-  saveBooks(@Body() newBook: BookDTO): BookDTO {
-    return this.BooksService.saveBook(newBook)
+  async saveBooks(@Body() newBook: BookDTO): Promise<BookDTO> {
+    return await this.BooksService.saveBook(newBook)
   }
 
   @Patch()
